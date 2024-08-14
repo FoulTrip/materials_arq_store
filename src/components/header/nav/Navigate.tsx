@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import styles from "./navigate.module.css";
-import LinkNav from "./link/LInk";
 import { motion } from "framer-motion";
-import { menuSlide } from "../anim";
 import { usePathname } from "next/navigation";
+import { menuSlide } from "../anim";
+import LinkNav from "./link/LInk";
+import CurveComponent from "./curve/Curve";
+import FooterComponent from "./Footer/FooterComponent";
 
 const navItems = [
   {
@@ -11,18 +13,22 @@ const navItems = [
     href: "/",
   },
   {
-    title: "Cortes",
-    href: "/cuts",
+    title: "Work",
+    href: "/work",
   },
   {
-    title: "Materiales",
-    href: "/materials",
+    title: "About",
+    href: "/about",
+  },
+  {
+    title: "Contact",
+    href: "/contact",
   },
 ];
 
-function NavigateHeader() {
+export default function NavContainer() {
   const pathname = usePathname();
-  const [selectedIndicator, setSelectedIndicator] = useState<string>(pathname);
+  const [selectedIndicator, setSelectedIndicator] = useState(pathname);
 
   return (
     <motion.div
@@ -34,32 +40,28 @@ function NavigateHeader() {
     >
       <div className={styles.body}>
         <div
-          onMouseLeave={() => setSelectedIndicator(pathname)}
+          onMouseLeave={() => {
+            setSelectedIndicator(pathname);
+          }}
           className={styles.nav}
         >
           <div className={styles.header}>
             <p>Navigation</p>
           </div>
-
-          {navItems.map((data, index) => (
-            <LinkNav
-              key={index}
-              data={{ ...data, index }}
-              isActive={selectedIndicator === data.href}
-              setSelectedIndicator={setSelectedIndicator}
-            />
-          ))}
+          {navItems.map((data, index) => {
+            return (
+              <LinkNav
+                key={index}
+                data={{ ...data, index }}
+                isActive={selectedIndicator == data.href}
+                setSelectedIndicator={setSelectedIndicator}
+              ></LinkNav>
+            );
+          })}
         </div>
-
-        <div className={styles.footer}>
-          <a>Awwwards</a>
-          <a>Instagram</a>
-          <a>Dribble</a>
-          <a>LinkedIn</a>
-        </div>
+        <FooterComponent />
       </div>
+      <CurveComponent />
     </motion.div>
   );
 }
-
-export default NavigateHeader;

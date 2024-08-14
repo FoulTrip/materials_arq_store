@@ -1,27 +1,39 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./header.module.css";
-import NavigateHeader from "./nav/Navigate";
+import NavContainer from "./nav/Navigate";
 import { AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 function Header() {
   const [isActive, setIsActive] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (isActive) setIsActive(false);
+  }, [pathname]);
 
   return (
     <>
-      <div
-        onClick={() => {
-          setIsActive(!isActive);
-        }}
-        className={styles.button}
-      >
-        <div
-          className={`${styles.burger} ${isActive ? styles.burgerActive : ""}`}
-        ></div>
+      <div className={styles.main}>
+        <div className={styles.header}>
+          <div
+            onClick={() => {
+              setIsActive(!isActive);
+            }}
+            className={styles.button}
+          >
+            <div
+              className={`${styles.burger} ${
+                isActive ? styles.burgerActive : ""
+              }`}
+            ></div>
+          </div>
+        </div>
       </div>
       <AnimatePresence mode="wait">
-        {isActive && <NavigateHeader />}
+        {isActive && <NavContainer />}
       </AnimatePresence>
     </>
   );
