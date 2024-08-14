@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { pagesTypes } from "@/types/Dashboard";
 import ContentDashboard from "@/components/admin/sections/ContentDashboard";
 import ContentUsers from "@/components/admin/sections/ContentUsers";
-import ContentInventory from "@/components/admin/sections/contentInventory";
+import ContentInventory from "@/components/admin/sections/ContentInventory";
 import ContentMaterials from "@/components/admin/sections/ContentMaterials";
 import ContentCuts from "@/components/admin/sections/ContentCuts";
 
