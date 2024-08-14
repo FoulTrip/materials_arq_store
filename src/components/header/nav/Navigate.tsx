@@ -22,8 +22,7 @@ const navItems = [
 
 function NavigateHeader() {
   const pathname = usePathname();
-
-  const [selectedIndicator, setSelectedIndicator] = useState(pathname);
+  const [selectedIndicator, setSelectedIndicator] = useState<string>(pathname);
 
   return (
     <motion.div
@@ -35,25 +34,21 @@ function NavigateHeader() {
     >
       <div className={styles.body}>
         <div
-          onMouseLeave={() => {
-            setSelectedIndicator(pathname);
-          }}
+          onMouseLeave={() => setSelectedIndicator(pathname)}
           className={styles.nav}
         >
           <div className={styles.header}>
             <p>Navigation</p>
           </div>
 
-          {navItems.map((data, index) => {
-            return (
-              <LinkNav
-                key={index}
-                data={{ ...data, index }}
-                isActive={selectedIndicator == data.href}
-                setSelectedIndicator={setSelectedIndicator}
-              ></LinkNav>
-            );
-          })}
+          {navItems.map((data, index) => (
+            <LinkNav
+              key={index}
+              data={{ ...data, index }}
+              isActive={selectedIndicator === data.href}
+              setSelectedIndicator={setSelectedIndicator}
+            />
+          ))}
         </div>
 
         <div className={styles.footer}>
