@@ -59,7 +59,7 @@ export default function NavContainer() {
             );
           })}
         </div>
-        <FooterComponent />
+        {/* <FooterComponent /> */}
       </div>
       <CurveComponent />
     </motion.div>

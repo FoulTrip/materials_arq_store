@@ -4,8 +4,8 @@ import HeroSection from "@/components/Landing/HeroinSection";
 export default function Home() {
   return (
     <>
-      <Header />
-      {/* <HeroSection /> */}
+      <HeroSection />
+      
     </>
   );
 }

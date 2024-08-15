@@ -5,6 +5,8 @@ import styles from "./header.module.css";
 import NavContainer from "./nav/Navigate";
 import { AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
+import testLogo from "@/assets/test_logo.png";
 
 function Header() {
   const [isActive, setIsActive] = useState(false);
@@ -17,6 +19,14 @@ function Header() {
   return (
     <>
       <div className={styles.main}>
+        <p className={styles.boxLogo}>
+          <Image
+            src={testLogo}
+            className={styles.imageLogo}
+            alt={"testLogo"}
+            priority={true}
+          />
+        </p>
         <div className={styles.header}>
           <div
             onClick={() => {
